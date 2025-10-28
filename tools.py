@@ -132,8 +132,8 @@ def find_game_by_name(game_name: str) -> dict[str, Any]:
         }
 
     # Return the first 3 parsed GameDetailsResponses as the primary matches.
-    primary_game = game_objects[:3]
-    return {"success": True, "results": primary_game.model_dump()}
+    serialized_games = [game.model_dump() for game in game_objects[:3]]
+    return {"success": True, "results": serialized_games}
 
 def find_multiple_games(
     num_results: int = 5,
@@ -211,31 +211,14 @@ VIDEO_GAME_TOOLS = [
         "type": "function",
         "function": {
             "name": "get_current_date",
-            "description": "Get the current date in the format YYYY-MM-DD. Always call this function if your response will have anything to do with relative dates.",
-        },
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "get_game_description",
-            "description": "Retrieve a detailed description for a specific game with the provided ID. Use this every time you need information for a specific game. Requires calling find_game_by_name or find_multiple_games first in order to get the game's ID.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "game_id": {
-                        "type": "integer",
-                        "description": "Numeric game ID fetched from previous calls to find_game_by_name or find_multiple_games.",
-                    }
-                },
-                "required": ["game_id"],
-            },
+            "description": "Get the current date in the format YYYY-MM-DD. Use this when you need to calculate date ranges for filtering games by relative dates (e.g., 'games from last year', 'games released in the past 6 months').",
         },
     },
     {
         "type": "function",
         "function": {
             "name": "find_game_by_name",
-            "description": "Fetch detailed metadata for the game whose name/title best matches the supplied game_name value. Use this every time you need information for a specific game.",
+            "description": "Search for a specific game by name and fetch its metadata (title, release date, rating, platforms, etc.). Use this when the user asks about a particular game by name and you need current data about it.",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -252,7 +235,7 @@ VIDEO_GAME_TOOLS = [
         "type": "function",
         "function": {
             "name": "find_multiple_games",
-            "description": "Fetch detailed metadata for multiple games based on a variety of conditions. Use this when the user requests lists of games based on specific criteria (ex. \"most popular ps4 games\").",
+            "description": "Search for multiple games using various filters (platform, genre, tags, ratings, release dates, etc.). Use this when the user explicitly asks for game recommendations or lists matching specific criteria (e.g., 'best PS4 games', 'top-rated RPGs', 'indie games from 2023').",
             "parameters": {
                 "type": "object",
                 "properties": {
