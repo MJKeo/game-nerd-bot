@@ -75,7 +75,7 @@ def _normalize_list_param(param: list[str] | str | None) -> list[str]:
 
 def get_current_date() -> str:
     """Get the current date in the format YYYY-MM-DD."""
-    response = f"Today's date is {datetime.datetime.now().strftime("%Y-%m-%d")}"
+    response = f"Today's date is {datetime.datetime.now().strftime('%Y-%m-%d')}"
     return {"success": True, "results": response}
 
 # ====================
