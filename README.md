@@ -1,3 +1,15 @@
+---
+title: Video Game Nerd Bot
+emoji: 🎮
+colorFrom: purple
+colorTo: indigo
+sdk: gradio
+sdk_version: "5.49.1"
+python_version: "3.12"
+app_file: app.py
+pinned: false
+---
+
 # 🎮 Video Game Nerd Bot
 
 A highly enthusiastic AI agent with deep gaming knowledge, ready to geek out about your favorite video games!
