@@ -30,8 +30,6 @@ cables (they're carefully arranged to minimize packet loss) 💾
 Give me the name of a game and I'll give you the rundown on if it's
 epic 😎 or cringe 🤮
 
-Enter "exit" or "quit" to quit
-
 ====================================================================="""
 
 WELCOME_DELAY_SECONDS = 1
