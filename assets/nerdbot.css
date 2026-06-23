@@ -1,0 +1,60 @@
+#nerdbot-chatbot .nerdbot-loading-bubble {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--background-fill-secondary);
+    border: 1px solid var(--border-color-primary);
+    border-radius: 6px !important;
+    border-bottom-left-radius: 0 !important;
+    padding: 16px 12px !important;
+}
+
+#nerdbot-chatbot .bot.message:has(.nerdbot-loading-bubble),
+#nerdbot-chatbot .message.component.html:has(.nerdbot-loading-bubble),
+#nerdbot-chatbot .message.component.html:has(.nerdbot-loading-bubble) > [data-testid="bot"],
+#nerdbot-chatbot .message.component.html:has(.nerdbot-loading-bubble) .block,
+#nerdbot-chatbot .message.component.html:has(.nerdbot-loading-bubble) .wrap,
+#nerdbot-chatbot .message.component.html:has(.nerdbot-loading-bubble) .html-container,
+#nerdbot-chatbot .message.component.html:has(.nerdbot-loading-bubble) .prose {
+    margin: 0 !important;
+    padding: 0 !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    border-width: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    overflow: visible !important;
+}
+
+#nerdbot-chatbot .nerdbot-loading-bubble span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--body-text-color);
+    opacity: 0.35;
+    animation: nerdbot-loading-pulse 0.9s ease-in-out infinite;
+}
+
+#nerdbot-chatbot .nerdbot-loading-bubble span:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+#nerdbot-chatbot .nerdbot-loading-bubble span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+body.nerdbot-welcome-loading button.submit-button {
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+@keyframes nerdbot-loading-pulse {
+    0%, 80%, 100% {
+        transform: translateY(0) scale(0.9);
+        opacity: 0.35;
+    }
+    40% {
+        transform: translateY(-1px) scale(1.1);
+        opacity: 1;
+    }
+}
